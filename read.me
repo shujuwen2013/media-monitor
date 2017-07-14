@@ -1,0 +1,26 @@
+Login AWS EC2
+ssh -i "pro2.pem" ec2-user@ec2-52-78-199-165.ap-northeast-2.compute.amazonaws.com
+
+Tranfer files
+scp -i pro2.pem ../media-monitor/requirements.txt ec2-user@ec2-52-78-199-165.ap-northeast-2.compute.amazonaws.com
+
+Move to a proper place
+/var/www/
+note permissions
+
+Install relevant lib
+virtualenv env
+source env/bin/activate
+Pip -r install requirements.txt 
+
+Start gunicorn in app's root dir
+gunicorn mm.wsgi:application
+
+Setup Nginx
+/etc/nginx/nginx.conf
+root, static location, 
+# set client body size to 20M #
+client_max_body_size 20M;
+
+Start Nginx
+sudo service nginx start
