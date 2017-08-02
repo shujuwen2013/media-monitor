@@ -65,6 +65,49 @@ def index(request):
         })
 
 
+def samsung(request):
+	if request.method == "POST":
+
+		try:
+			storage = messages.get_messages(request)
+			for message in storage:
+				print message
+			storage.used = True
+		except:
+			pass
+
+    	form = UploadFileForm(request.POST, request.FILES)
+    	if form.is_valid():
+			try:
+				filehandle = request.FILES['file']
+				xls = pd.ExcelFile(filehandle)
+				df = xls.parse('Sheet1')
+				par =xls.parse('Sheet2').values.transpose()
+				df = process(df, par)
+			except Exception as e:
+				print e
+				messages.warning(request, 'The uploaded file has some problems: ' + str(e))
+				return render(
+        			request,
+        			'scanner/index.html',
+        			{
+            			'form': form,
+        			})
+			return excel.make_response_from_array(
+        		[df.columns.values.tolist()] + df.as_matrix().tolist(),
+        		"xls",
+        		file_name="download",
+        		)
+	else:
+		form = UploadFileForm()
+	return render(
+        request,
+        'scanner/samsung.html',
+        {
+            'form': form,
+        })
+
+
 def process(df, par):
 	# tokenize columns
 	df['Tokenized_Title'] = df['Title'].apply(tokenize_text)
