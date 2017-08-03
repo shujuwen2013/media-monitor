@@ -8,3 +8,4 @@ pyexcel-io==0.4.2
 pyexcel-webio==0.0.11
 pyexcel-xls==0.4.0
 pyexcel-xlsx==0.4.0
+gunicorn==19.7.1
