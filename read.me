@@ -1,8 +1,20 @@
-# Login AWS EC2
-ssh -i "pro2-aws.pem" ec2-user@ec2-52-78-199-165.ap-northeast-2.compute.amazonaws.com
+# Server address
+ec2-user@ec2-52-78-199-165.ap-northeast-2.compute.amazonaws.com
 
-# Tranfer files
-scp -i pro2.pem [file/dir] [target]
+# Login AWS EC2
+ssh -i "pro2-aws.pem" [server]
+
+# Deploy key
+~/.ssh
+
+# Remote repo
+git@github.com:shujuwen2013/media-monitor.git
+
+# Checkout code to server
+git clone git@github.com:shujuwen2013/media-monitor.git
+
+# Update code from server
+git pull
 
 # Move to a proper place
 /var/www/
