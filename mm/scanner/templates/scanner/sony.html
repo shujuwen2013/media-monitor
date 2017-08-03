@@ -54,10 +54,10 @@
                 <div class="row">
                     
                     <div class="col-lg-12">
-                        <h1>Media Sentiment: Samsung</h1>
-                        <p class="lead">This function is used for preprocessing a formatted media sentiment dataset of <mark>Samsung</mark></p>
+                        <h1>Media Sentiment: Sony</h1>
+                        <p class="lead">This function is used for preprocessing a formatted media sentiment dataset of <mark>Sony</mark></p>
                         <p><strong>Make sure fill and upload data in an exactly same formatted excel file as
-                            <a href="{% static 'files/upload_data_samsung.xlsx' %}">this template</a>.</strong>
+                            <a href="{% static 'files/upload_data_sony.xlsx' %}">this template</a>.</strong>
                         </p>
                         <p><strong>Processing data will take a while. The result will be automatically downloaded.</strong></p>
                     </div>
@@ -88,25 +88,29 @@
                         <ul>
                             <li>There are two sheets in the upload excel file. The first contains <em>raw media data</em>. The second contains <em>user-defined parameters</em> for analysis. The parameters, which you can edit accordingly, are as follows:</li>
                                 <ul>
-                                    <li><code>Brand</code>: important words that can be used to identify whether an article is related to <strong>Samsung</strong> rather than other brands, which could be a brand name, a featured product, or even a special tech term</li>
+                                    <li><code>Target_Title</code>: here you can list all article titles that you want to mark as 'published' </li>
+                                    <li><code>Brand</code>: important words that can be used to identify whether an article is related to <strong>Sony</strong> rather than other brands, which could be a brand name, a featured product, or even a special tech term</li>
                                     <li><code>Competitor</code>: import competitors' names</li>
                                     <li><code>Keyword</code>: important words that can be used to identify an article is related to TV rather than other products, such as a mobile phone or a computer monitor</li>
                                     <li><code>Forbidden_Words</code>: titles that contain any of these words would be considered as 'irrelevant'</li>
                                 </ul>
                             <li>All articles will be categorized as one of the 3 types: <strong>'published'</strong>, <strong>'relevant'</strong>, <strong>'irrelevant'</strong>. The general logic to categorize these 3 types are as follows.</li>
                                 <ul>
-                                    <li>An article with a title that satisfies the following requirement will be categorized as <strong>'published'</strong>:</li>
+                                    <li>An article with a title that satisfies <strong>ANY</strong> of the following requirements will be categorized as <strong>'published'</strong>:</li>
                                     <ul>
-                                        <li>NOT negative</li>, <strong>AND</strong> not from Weibo channel, <strong>AND</strong> has AT LEAST ONE other article with a similar title, <strong>AND</strong> related to Samsung, <strong>AND</strong> related to TV, <strong>AND</strong> no <code>Forbidden_Words</code></li>
+                                        <li>Very similar to any of the <code>Target_Titles</code></li>
+                                        <li>Similar to any of the <code>Target_Titles</code>, <strong>AND</strong> not from Weixin channel, <strong>AND</strong> related to Sony, <strong>AND</strong> related to TV, <strong>AND</strong> no <code>Forbidden_Words</code></li>
                                     </ul>
-                                    <li>An article that is <strong>NOT 'published'</strong> with a title that satisfies the following requirement will be categorized as <strong>'relevant'</strong>:</li>
+                                    <li>An article that is <strong>NOT 'published'</strong> with a title that satisfies <strong>ANY</strong> of the following requirements will be categorized as <strong>'relevant'</strong>:</li>
                                     <ul>
-                                          <li>related to Samsung, <strong>AND</strong> related to TV, <strong>AND</strong> no <code>Forbidden_Words</code></li>
+                                          <li>NOT from Weixin channel, <strong>AND</strong> NOT similar to any of the <code>Target_Titles</code>, <strong>AND</strong> related to Sony, <strong>AND</strong> related to TV, <strong>AND</strong> no <code>Forbidden_Words</code></li>
+                                          <li>From Weixin channel, <strong>AND</strong> related to Sony, <strong>AND</strong> very related to TV, <strong>AND</strong> no <code>Forbidden_Words</code></li>
                                     </ul>
                                     <li>The rest will be categorized as <strong>'irrelevant'</strong></li>
                                 </ul>
                         </ul>
                     </div>
+
                 </div>
             </div>
         </div>
