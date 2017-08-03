@@ -1,8 +1,8 @@
 # Login AWS EC2
-ssh -i "pro2.pem" ec2-user@ec2-52-78-199-165.ap-northeast-2.compute.amazonaws.com
+ssh -i "pro2-aws.pem" ec2-user@ec2-52-78-199-165.ap-northeast-2.compute.amazonaws.com
 
 # Tranfer files
-scp -i pro2.pem [file/dir] ec2-user@ec2-52-78-199-165.ap-northeast-2.compute.amazonaws.com
+scp -i pro2.pem [file/dir] [target]
 
 # Move to a proper place
 /var/www/
