@@ -23,7 +23,7 @@ git pull
 # Install relevant lib
 virtualenv env
 source env/bin/activate
-Pip -r install requirements.txt 
+pip install -r requirements.txt 
 
 # Start gunicorn in app's root dir
 gunicorn mm.wsgi:application
