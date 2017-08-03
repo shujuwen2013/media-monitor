@@ -25,8 +25,14 @@ virtualenv env
 source env/bin/activate
 pip install -r requirements.txt 
 
-# Start gunicorn in app's root dir
+# Start gunicorn in app's root dir (media-monitor/mm/)
 gunicorn mm.wsgi:application
+
+# Stop gunicorn and kill all of the workers with application name: mm
+kill -9 `ps aux |grep gunicorn |grep mm | awk '{ print $2 }'` 
+
+# To see the processes
+ps ax|grep gunicorn
 
 # Setup Nginx
 /etc/nginx/nginx.conf
@@ -34,5 +40,5 @@ root, static location,
 # set client body size to 20M #
 client_max_body_size 20M;
 
-# Start Nginx
-sudo service nginx start
+# Start|stop Nginx
+sudo service nginx start|restart|stop
